@@ -1,0 +1,23 @@
+import playground.music.*;
+
+import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder;
+
+global HardSoftScoreHolder scoreHolder;
+
+rule "need to play at least a song"
+    when
+        forall ( Song( inSetList == false ) )
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, -1000);
+end
+
+rule "do not take more than 15min more than the allocated time"
+    when
+        $playingSlot: PlayingSlot($totalAllocatedSlot : totalAllocatedSlot)
+        $requiredTime: Number() from accumulate(
+            Song($duration : durationInMinutes, inSetList == true),
+            sum($duration))
+    then
+        scoreHolder.addHardConstraintMatch(kcontext, $totalAllocatedSlot - $requiredTime.intValue());
+end
+

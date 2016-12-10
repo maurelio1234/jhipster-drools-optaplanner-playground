@@ -1,7 +1,0 @@
-rule 'hello'
-when
-    $name: String()
-then
-    System.out.println("Hello World: " + $name);
-    insert( new Integer($name.length()) );
-end
