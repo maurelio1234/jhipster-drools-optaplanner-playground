@@ -1,7 +1,6 @@
 package playground.music;
 
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
-import org.optaplanner.core.api.domain.solution.PlanningEntityProperty;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
 import org.optaplanner.core.api.domain.solution.Solution;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
@@ -50,9 +49,7 @@ public class SetListSolution implements Solution<HardSoftScore> {
 
     public Collection<? extends Object> getProblemFacts() {
         List<Object> facts = new ArrayList<Object>();
-        facts.addAll(this.getSongList());
         facts.add(playingSlot);
         return facts;
     }
-
 }
