@@ -5,10 +5,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import playground.music.service.dto.JobDTO;
-import playground.music.service.dto.JobRequestDTO;
-import playground.music.service.dto.JobResultDTO;
-import playground.music.service.dto.SongDTO;
+import playground.music.service.dto.jobs.JobDTO;
+import playground.music.service.dto.jobs.JobRequestDTO;
+import playground.music.service.dto.jobs.JobResultDTO;
+import playground.music.service.dto.jobs.SongDTO;
 
 import java.util.*;
 import java.util.stream.Collectors;

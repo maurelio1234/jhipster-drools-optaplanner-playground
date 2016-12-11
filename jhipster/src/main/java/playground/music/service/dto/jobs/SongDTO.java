@@ -1,11 +1,15 @@
-package playground.music.service.dto;
+package playground.music.service.dto.jobs;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class SongDTO {
     private String name;
     private int technicalDifficuty;
     private int playingFunLevel;
     private int durationInMinutes;
     private int audienceEnjoyment;
+    private Boolean inSetList;
 
     public String getName() {
         return name;
@@ -56,5 +60,13 @@ public class SongDTO {
             ", durationInMinutes=" + durationInMinutes +
             ", audienceEnjoyment=" + audienceEnjoyment +
             '}';
+    }
+
+    public Boolean getInSetList() {
+        return inSetList;
+    }
+
+    public void setInSetList(Boolean inSetList) {
+        this.inSetList = inSetList;
     }
 }

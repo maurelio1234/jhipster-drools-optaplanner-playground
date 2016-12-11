@@ -1,4 +1,4 @@
-package playground.music.service.dto;
+package playground.music.service.dto.jobs;
 
 import java.util.List;
 
