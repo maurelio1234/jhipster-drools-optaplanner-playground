@@ -5,12 +5,13 @@
         .module('jhipsterApp')
         .controller('MusicController', MusicController);
 
-    MusicController.$inject = ['$scope'];
+    MusicController.$inject = ['$scope', '$http', '$timeout'];
 
-    function MusicController ($scope) {
+    function MusicController ($scope, $http, $timeout) {
         var vm = this;
         vm.add = add;
         vm.remove = remove;
+        vm.submit = submit;
 
         $scope.songs = [
             {
@@ -24,6 +25,11 @@
 
         $scope.playingSlot = { totalAllocatedSlot: 30 };
 
+        $scope.job = {
+            running: false,
+            submitted: false
+        };
+
         function add() {
             $scope.songs.push({
                 name: '',
@@ -36,6 +42,29 @@
 
         function remove(index) {
             $scope.songs.splice(index, 1)
+        }
+
+        function submit() {
+            $http.post('api/jobs', {songs: $scope.songs, totalAllocatedSlot: $scope.playingSlot.totalAllocatedSlot})
+                .success(function(data) {
+                    $scope.job.id = data.jobId;
+                    $scope.job.running = true;
+                    $scope.job.submitted = true;
+
+                    $timeout(checkJob, 5000);
+                })
+        }
+
+        function checkJob() {
+            $http.get('api/jobs/' + $scope.job.id)
+                .success(function(data) {
+                    $scope.job.running = !data.finished;
+                    $scope.job.songs = data.songNames;
+
+                    if ($scope.job.running) {
+                        $timeout(checkJob, 5000);
+                    }
+                })
         }
     }
 })();

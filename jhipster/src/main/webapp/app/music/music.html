@@ -21,5 +21,20 @@
     <div>
         <hr>
         <a href="" ng-click="vm.add()">Add</a>
+        <a href="" ng-click="vm.submit()">Submit</a>
+    </div>
+
+    <div ng-show="job.submitted">
+        <h3>Job information</h3>
+        <p ng-show="job.running">The solver is running... </p>
+        <p ng-show="!job.running">The solver is finished! </p>
+        <p>Job id is <i>{{job.id}}</i></p>
+        <p>Best set list for now:</p>
+
+        <ul>
+            <div ng-repeat="song in job.songs">
+                <li>{{song}}</li>
+            </div>
+        </ul>
     </div>
 </div>
