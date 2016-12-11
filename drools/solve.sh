@@ -4,13 +4,13 @@ data='{
   "planning-problem": {
   	"playground.music.SetListSolution": {
 	 	"songList": [
-	 		{ "playground.music.Song": { "name": "Song1", "durationInMinutes": 5 } },
-	 		{ "playground.music.Song": { "name": "Song2", "durationInMinutes": 7 } },
-	 		{ "playground.music.Song": { "name": "Song3", "durationInMinutes": 9 } },
-	 		{ "playground.music.Song": { "name": "Song4", "durationInMinutes": 2 } }
+	 		{ "name": "Song1", "durationInMinutes": 5 },
+	 		{ "name": "Song2", "durationInMinutes": 7 },
+	 		{ "name": "Song3", "durationInMinutes": 9 },
+	 		{ "name": "Song4", "durationInMinutes": 2 }
 	 	],
 	 	"playingSlot": {
-	 		"playground.music.PlayingSlot": { "totalAllocatedSlot": 10 }	
+	 		"totalAllocatedSlot": 10 	
 	 	}
 	 }
   }
