@@ -12,7 +12,7 @@
 
     <!-- Optimization algorithms configuration -->
     <termination>
-        <secondsSpentLimit>120</secondsSpentLimit>
+        <secondsSpentLimit>30</secondsSpentLimit>
     </termination>
     <localSearch>
         <acceptor>
@@ -20,6 +20,7 @@
         </acceptor>
         <forager>
             <acceptedCountLimit>1000</acceptedCountLimit>
+            <pickEarlyType>FIRST_BEST_SCORE_IMPROVING</pickEarlyType>
         </forager>
     </localSearch>
 </solver>
