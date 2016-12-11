@@ -18,7 +18,7 @@ data='{
 
 
 echo $data | curl --request POST \
-  --url http://localhost:8080/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist \
+  --url http://localhost:9090/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist \
   --header 'authorization: Basic a2llc2VydmVyOmtpZXNlcnZlcg==' \
   --header 'content-type: application/json' \
   --header 'x-kie-contenttype: application/json' \
@@ -27,7 +27,7 @@ echo $data | curl --request POST \
 sleep 5
 
 curl --request GET \
-  --url http://localhost:8080/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist/bestsolution \
+  --url http://localhost:9090/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist/bestsolution \
   --header 'authorization: Basic a2llc2VydmVyOmtpZXNlcnZlcg==' \
   --header 'content-type: application/json' \
   --header 'x-kie-contenttype: application/json' 

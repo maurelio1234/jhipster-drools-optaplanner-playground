@@ -7,5 +7,5 @@ This folder contains a Drools/Optaplanner 6.5 solver to be deployed as a REST se
 3. Set up a user called ``kieserver`` (password ``kieserver``) on a BASIC realm called ``KIE Server`` and with role ``kie-server``
 4. Deploy ``kie-server-6.5.0.Final-webc.war`` on Jetty ``webapps`` folder
 5. Compile the project using maven ``mvn clean install``
-6. Start the jetty server ``java -jar start.jar``
+6. Start the jetty server ``java -jar start.jar -Djetty.port=9090``
 7. Run the deployment script ``sh deploy.sh``
