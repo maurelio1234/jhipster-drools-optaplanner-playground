@@ -1,0 +1,25 @@
+<div ng-cloak>
+    <h3>Set list composer!</h3>
+    <p>Define the venue constraints and your songs and our solver will propose a set list to you.</p>
+
+    <p>How much time do you have to play?</p> <input ng-model="playingSlot.totalAllocatedSlot"> minutes
+
+    <div ng-repeat="song in songs">
+        <hr>
+        <p>#{{ $index + 1 }}</p>
+
+        Name: <input ng-model="song.name">
+        Duration: <input ng-model="song.durationInMinutes"> minutes
+        <br/>
+
+        Audience enjoyment: <input type="range" min="0" max="100" ng-model="song.audienceEnjoyment">
+        Technical difficulty: <input type="range" min="0" max="100" ng-model="song.technicalDifficulty">
+        Playing fun level: <input type="range" min="0" max="100" ng-model="song.playingFunLevel">
+
+        <a href="" ng-click="vm.remove($index)">Remove</a>
+    </div>
+    <div>
+        <hr>
+        <a href="" ng-click="vm.add()">Add</a>
+    </div>
+</div>
