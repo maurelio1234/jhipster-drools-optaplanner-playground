@@ -12,9 +12,9 @@
         Duration: <input ng-model="song.durationInMinutes"> minutes
         <br/>
 
-        Audience enjoyment: <input type="range" min="0" max="100" ng-model="song.audienceEnjoyment">
-        Technical difficulty: <input type="range" min="0" max="100" ng-model="song.technicalDifficulty">
-        Playing fun level: <input type="range" min="0" max="100" ng-model="song.playingFunLevel">
+        Audience enjoyment: <input type="range" min="0" max="10" ng-model="song.audienceEnjoyment">
+        Technical difficulty: <input type="range" min="0" max="10" ng-model="song.technicalDifficulty">
+        Playing fun level: <input type="range" min="0" max="10" ng-model="song.playingFunLevel">
 
         <a href="" ng-click="vm.remove($index)">Remove</a>
     </div>

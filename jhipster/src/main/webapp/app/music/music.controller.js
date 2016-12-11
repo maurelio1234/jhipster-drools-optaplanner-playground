@@ -16,11 +16,67 @@
         $scope.songs = [
             {
                 name: 'Sweat child O\'mine',
-                durationInMinutes: 5,
-                audienceEnjoyment: 2,
-                technicalDifficulty: 10,
+                durationInMinutes: 6,
+                audienceEnjoyment: 7,
+                technicalDifficulty: 9,
+                playingFunLevel: 8
+            },
+            {
+                name: 'Thank you',
+                durationInMinutes: 3,
+                audienceEnjoyment: 5,
+                technicalDifficulty: 5,
+                playingFunLevel: 6
+            },
+            {
+                name: 'Save tonight',
+                durationInMinutes: 3,
+                audienceEnjoyment: 7,
+                technicalDifficulty: 2,
                 playingFunLevel: 10
-            }
+            },
+            {
+                name: 'Sweet dreams',
+                durationInMinutes: 4,
+                audienceEnjoyment: 5,
+                technicalDifficulty: 3,
+                playingFunLevel: 3
+            },
+            {
+                name: 'I\'m yours',
+                durationInMinutes: 9,
+                audienceEnjoyment: 10,
+                technicalDifficulty: 3,
+                playingFunLevel: 10
+            },
+            {
+                name: 'Lemon tree',
+                durationInMinutes: 3,
+                audienceEnjoyment: 8,
+                technicalDifficulty: 4,
+                playingFunLevel: 3
+            },
+            {
+                name: 'Wonderwall',
+                durationInMinutes: 5,
+                audienceEnjoyment: 4,
+                technicalDifficulty: 4,
+                playingFunLevel: 3
+            },
+            {
+                name: 'Pretty woman',
+                durationInMinutes: 3,
+                audienceEnjoyment: 6,
+                technicalDifficulty: 3,
+                playingFunLevel: 1
+            },
+            {
+                name: 'Creep',
+                durationInMinutes: 4,
+                audienceEnjoyment: 4,
+                technicalDifficulty: 1,
+                playingFunLevel: 1
+            },
         ];
 
         $scope.playingSlot = { totalAllocatedSlot: 30 };
