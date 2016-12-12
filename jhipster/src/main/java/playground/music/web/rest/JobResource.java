@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api")
 public class JobResource {
     private static String KIE_SERVER_ENDPOINT = "http://localhost:9090/kie-server-6.5.0.Final-webc/";
+    private static String AUTHORIZATION_TOKEN = "Basic a2llc2VydmVyOmtpZXNlcnZlcg==";
+
     private final Logger log = LoggerFactory.getLogger(JobResource.class);
 
     @PostMapping("/jobs")
@@ -27,7 +29,7 @@ public class JobResource {
         log.debug("REST request to create job : {}", jobRequest);
 
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("authorization", "Basic a2llc2VydmVyOmtpZXNlcnZlcg==");
+        headers.add("authorization", AUTHORIZATION_TOKEN);
         headers.add("x-kie-contenttype", "application/json");
 
         RestTemplate restTemplate = new RestTemplate();
@@ -50,7 +52,7 @@ public class JobResource {
     @GetMapping("/jobs/{jobId}")
     public ResponseEntity<JobResultDTO> getJob(@PathVariable String jobId) {
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("authorization", "Basic a2llc2VydmVyOmtpZXNlcnZlcg==");
+        headers.add("authorization", AUTHORIZATION_TOKEN);
         headers.add("x-kie-contenttype", "application/json");
 
         HttpEntity entity = new HttpEntity(headers);
