@@ -11,16 +11,14 @@ rule "need to play at least a song"
         scoreHolder.addHardConstraintMatch(kcontext, -1000);
 end
 
-rule "do not take more than 15min more than the allocated time"
+rule "do not take more than the allocated time"
     when
         $playingSlot: PlayingSlot($totalAllocatedSlot : totalAllocatedSlot)
-        $requiredTime: Number() from accumulate(
-            Song($duration : durationInMinutes, inSetList == true),
+        $requiredTime: Number(intValue > $totalAllocatedSlot) from accumulate(
+            Song(inSetList == true, $duration : durationInMinutes),
             sum($duration))
     then
-        if ($requiredTime.intValue() - $totalAllocatedSlot > 15) {
-            scoreHolder.addHardConstraintMatch(kcontext, -1000);
-        }
+       scoreHolder.addHardConstraintMatch(kcontext, -1000);
 end
 
 rule "maximize playing time, playingFunLevel and audienceEnjoyment"
