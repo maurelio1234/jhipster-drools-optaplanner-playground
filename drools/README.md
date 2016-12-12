@@ -9,3 +9,4 @@ This folder contains a Drools/Optaplanner 6.5 solver to be deployed as a REST se
 5. Compile the project using maven ``mvn clean install``
 6. Start the jetty server ``java -jar start.jar -Djetty.port=9090``
 7. Run the deployment script ``sh deploy.sh``
+8. The solve script ``sh solve.sh`` illustrates a request to the solver.
