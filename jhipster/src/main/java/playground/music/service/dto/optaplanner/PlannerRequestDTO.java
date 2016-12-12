@@ -7,7 +7,7 @@ public class PlannerRequestDTO {
 
     @JsonProperty("planning-problem")
     private
-    PlanningProblem planningProblem;
+    PlanningProblemDTO planningProblem;
 
     public String getStatus() {
         return status;
@@ -17,11 +17,11 @@ public class PlannerRequestDTO {
         this.status = status;
     }
 
-    public PlanningProblem getPlanningProblem() {
+    public PlanningProblemDTO getPlanningProblem() {
         return planningProblem;
     }
 
-    public void setPlanningProblem(PlanningProblem planningProblem) {
+    public void setPlanningProblem(PlanningProblemDTO planningProblem) {
         this.planningProblem = planningProblem;
     }
 

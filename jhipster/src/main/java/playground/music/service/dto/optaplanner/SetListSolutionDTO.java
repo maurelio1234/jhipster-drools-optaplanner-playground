@@ -2,22 +2,22 @@ package playground.music.service.dto.optaplanner;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class SetListSolution {
+public class SetListSolutionDTO {
     @JsonProperty("playground.music.SetListSolution")
     private
-    Solution setListSolution;
+    SolutionDTO setListSolution;
 
-    public Solution getSetListSolution() {
+    public SolutionDTO getSetListSolution() {
         return setListSolution;
     }
 
-    public void setSetListSolution(Solution setListSolution) {
+    public void setSetListSolution(SolutionDTO setListSolution) {
         this.setListSolution = setListSolution;
     }
 
     @Override
     public String toString() {
-        return "SetListSolution{" +
+        return "SetListSolutionDTO{" +
             "setListSolution=" + setListSolution +
             '}';
     }

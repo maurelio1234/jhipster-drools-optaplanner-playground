@@ -1,9 +1,9 @@
 package playground.music.service.dto.optaplanner;
 
-public class JobCreationResponse {
+public class JobCreationResponseDTO {
     private String type;
     private String msg;
-    private Result result;
+    private ResultDTO result;
 
     public String getType() {
         return type;
@@ -21,17 +21,17 @@ public class JobCreationResponse {
         this.msg = msg;
     }
 
-    public Result getResult() {
+    public ResultDTO getResult() {
         return result;
     }
 
-    public void setResult(Result result) {
+    public void setResult(ResultDTO result) {
         this.result = result;
     }
 
     @Override
     public String toString() {
-        return "JobCreationResponse{" +
+        return "JobCreationResponseDTO{" +
             "type='" + type + '\'' +
             ", msg='" + msg + '\'' +
             ", result=" + result +

@@ -3,7 +3,7 @@ package playground.music.service.dto.optaplanner;
 public class PlannerResponseDTO {
     private String type;
     private String msg;
-    private Result result;
+    private ResultDTO result;
 
     public String getType() {
         return type;
@@ -21,11 +21,11 @@ public class PlannerResponseDTO {
         this.msg = msg;
     }
 
-    public Result getResult() {
+    public ResultDTO getResult() {
         return result;
     }
 
-    public void setResult(Result result) {
+    public void setResult(ResultDTO result) {
         this.result = result;
     }
 

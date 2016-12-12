@@ -1,6 +1,6 @@
 package playground.music.service.dto.optaplanner;
 
-public class PlayingSlot {
+public class PlayingSlotDTO {
     private int totalAllocatedSlot;
 
     public int getTotalAllocatedSlot() {
@@ -13,7 +13,7 @@ public class PlayingSlot {
 
     @Override
     public String toString() {
-        return "PlayingSlot{" +
+        return "PlayingSlotDTO{" +
             "totalAllocatedSlot=" + totalAllocatedSlot +
             '}';
     }

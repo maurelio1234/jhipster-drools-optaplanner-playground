@@ -1,6 +1,6 @@
 package playground.music.service.dto.optaplanner;
 
-public class HardSoftScore {
+public class HardSoftScoreDTO {
     private int hardScore;
     private int softScore;
     private boolean feasible;
@@ -31,7 +31,7 @@ public class HardSoftScore {
 
     @Override
     public String toString() {
-        return "HardSoftScore{" +
+        return "HardSoftScoreDTO{" +
             "hardScore=" + hardScore +
             ", softScore=" + softScore +
             ", feasible=" + feasible +

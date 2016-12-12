@@ -6,11 +6,11 @@ import playground.music.service.dto.jobs.SongDTO;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Solution {
+public class SolutionDTO {
     private List<SongDTO> songList;
-    private PlayingSlot playingSlot;
-    private HardSoftScore score;
-    private List<PlayingSlot> problemFacts;
+    private PlayingSlotDTO playingSlot;
+    private HardSoftScoreDTO score;
+    private List<PlayingSlotDTO> problemFacts;
     private List<Boolean> booleanRange;
 
     public List<SongDTO> getSongList() {
@@ -21,27 +21,27 @@ public class Solution {
         this.songList = songList;
     }
 
-    public PlayingSlot getPlayingSlot() {
+    public PlayingSlotDTO getPlayingSlot() {
         return playingSlot;
     }
 
-    public void setPlayingSlot(PlayingSlot playingSlot) {
+    public void setPlayingSlot(PlayingSlotDTO playingSlot) {
         this.playingSlot = playingSlot;
     }
 
-    public HardSoftScore getScore() {
+    public HardSoftScoreDTO getScore() {
         return score;
     }
 
-    public void setScore(HardSoftScore score) {
+    public void setScore(HardSoftScoreDTO score) {
         this.score = score;
     }
 
-    public List<PlayingSlot> getProblemFacts() {
+    public List<PlayingSlotDTO> getProblemFacts() {
         return problemFacts;
     }
 
-    public void setProblemFacts(List<PlayingSlot> problemFacts) {
+    public void setProblemFacts(List<PlayingSlotDTO> problemFacts) {
         this.problemFacts = problemFacts;
     }
 
@@ -55,7 +55,7 @@ public class Solution {
 
     @Override
     public String toString() {
-        return "Solution{" +
+        return "SolutionDTO{" +
             "songList=" + songList +
             ", playingSlot=" + playingSlot +
             ", score=" + score +

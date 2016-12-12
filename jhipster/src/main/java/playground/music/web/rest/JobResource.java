@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -13,10 +12,8 @@ import org.springframework.web.client.RestTemplate;
 import playground.music.service.dto.jobs.JobDTO;
 import playground.music.service.dto.jobs.JobRequestDTO;
 import playground.music.service.dto.jobs.JobResultDTO;
-import playground.music.service.dto.jobs.SongDTO;
 import playground.music.service.dto.optaplanner.*;
 
-import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -47,13 +44,13 @@ public class JobResource {
     private PlannerRequestDTO getPlannerRequestDTO(JobRequestDTO jobRequest) {
         PlannerRequestDTO request = new PlannerRequestDTO();
         request.setStatus("SOLVING");
-        PlanningProblem planningProblem = new PlanningProblem();
+        PlanningProblemDTO planningProblem = new PlanningProblemDTO();
         request.setPlanningProblem(planningProblem);
 
-        Solution solution = new Solution();
+        SolutionDTO solution = new SolutionDTO();
         planningProblem.setSolution(solution);
 
-        PlayingSlot playingSlot = new PlayingSlot();
+        PlayingSlotDTO playingSlot = new PlayingSlotDTO();
 
         playingSlot.setTotalAllocatedSlot(jobRequest.getTotalAllocatedSlot());
         solution.setPlayingSlot(playingSlot);

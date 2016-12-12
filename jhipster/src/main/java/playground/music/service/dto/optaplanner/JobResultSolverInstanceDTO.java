@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class JobResultSolverInstance {
+public class JobResultSolverInstanceDTO {
     private String status;
     @JsonProperty("container-id")
     private
@@ -16,9 +16,9 @@ public class JobResultSolverInstance {
     private
     String solverConfigFile;
 
-    private Score score;
+    private ScoreDTO score;
     @JsonProperty("best-solution")
-    private SetListSolution bestSolution;
+    private SetListSolutionDTO bestSolution;
     public String getStatus() {
         return status;
     }
@@ -51,25 +51,25 @@ public class JobResultSolverInstance {
         this.solverConfigFile = solverConfigFile;
     }
 
-    public Score getScore() {
+    public ScoreDTO getScore() {
         return score;
     }
 
-    public void setScore(Score score) {
+    public void setScore(ScoreDTO score) {
         this.score = score;
     }
 
-    public SetListSolution getBestSolution() {
+    public SetListSolutionDTO getBestSolution() {
         return bestSolution;
     }
 
-    public void setBestSolution(SetListSolution bestSolution) {
+    public void setBestSolution(SetListSolutionDTO bestSolution) {
         this.bestSolution = bestSolution;
     }
 
     @Override
     public String toString() {
-        return "JobResultSolverInstance{" +
+        return "JobResultSolverInstanceDTO{" +
             "status='" + status + '\'' +
             ", containerId='" + containerId + '\'' +
             ", solverId='" + solverId + '\'' +

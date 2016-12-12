@@ -2,22 +2,22 @@ package playground.music.service.dto.optaplanner;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Score {
+public class ScoreDTO {
     @JsonProperty("org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore")
     private
-    HardSoftScore hardSoftScore;
+    HardSoftScoreDTO hardSoftScore;
 
-    public HardSoftScore getHardSoftScore() {
+    public HardSoftScoreDTO getHardSoftScore() {
         return hardSoftScore;
     }
 
-    public void setHardSoftScore(HardSoftScore hardSoftScore) {
+    public void setHardSoftScore(HardSoftScoreDTO hardSoftScore) {
         this.hardSoftScore = hardSoftScore;
     }
 
     @Override
     public String toString() {
-        return "Score{" +
+        return "ScoreDTO{" +
             "hardSoftScore=" + hardSoftScore +
             '}';
     }
