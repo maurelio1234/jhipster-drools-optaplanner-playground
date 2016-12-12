@@ -39,10 +39,10 @@ Wait for this message:
 
 Wait for this message:
 
-[BS] Access URLs:
-       Local: http://localhost:9000
-    External: http://172.31.25.131:9000
-          UI: http://localhost:3001
- UI External: http://172.31.25.131:3001
- 
+        [BS] Access URLs:
+               Local: http://localhost:9000
+            External: http://172.31.25.131:9000
+                  UI: http://localhost:3001
+         UI External: http://172.31.25.131:3001
+         
  The set list composer should be available under: http://localhost:9000/#/music
