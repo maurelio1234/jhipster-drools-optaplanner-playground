@@ -13,7 +13,7 @@
         <br/>
 
         Audience enjoyment: <input type="range" min="0" max="10" ng-model="song.audienceEnjoyment">
-        Technical difficulty: <input type="range" min="0" max="10" ng-model="song.technicalDifficulty">
+        Technical difficulty: <input type="range" min="0" max="10" ng-model="song.technicalDifficuty">
         Playing fun level: <input type="range" min="0" max="10" ng-model="song.playingFunLevel">
 
         <a href="" ng-click="vm.remove($index)">Remove</a>
@@ -29,12 +29,15 @@
         <p ng-show="job.running">The solver is running... </p>
         <p ng-show="!job.running">The solver is finished! </p>
         <p>Job id is <i>{{job.id}}</i></p>
-        <p>Best set list for now:</p>
 
-        <ul>
-            <div ng-repeat="song in job.songs">
-                <li>{{song}}</li>
-            </div>
-        </ul>
+        <div ng-show="job.songs.length > 0">
+            <p>Best set list<span ng-show="job.running"> for now</span>:</p>
+
+            <ul>
+                <div ng-repeat="song in job.songs">
+                    <li>{{song}}</li>
+                </div>
+            </ul>
+        </div>
     </div>
 </div>

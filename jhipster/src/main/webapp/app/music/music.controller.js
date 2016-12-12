@@ -18,63 +18,63 @@
                 name: 'Sweat child O\'mine',
                 durationInMinutes: 6,
                 audienceEnjoyment: 7,
-                technicalDifficulty: 9,
+                technicalDifficuty: 9,
                 playingFunLevel: 8
             },
             {
                 name: 'Thank you',
                 durationInMinutes: 3,
                 audienceEnjoyment: 5,
-                technicalDifficulty: 5,
+                technicalDifficuty: 5,
                 playingFunLevel: 6
             },
             {
                 name: 'Save tonight',
                 durationInMinutes: 3,
                 audienceEnjoyment: 7,
-                technicalDifficulty: 2,
+                technicalDifficuty: 2,
                 playingFunLevel: 10
             },
             {
                 name: 'Sweet dreams',
                 durationInMinutes: 4,
                 audienceEnjoyment: 5,
-                technicalDifficulty: 3,
+                technicalDifficuty: 3,
                 playingFunLevel: 3
             },
             {
                 name: 'I\'m yours',
                 durationInMinutes: 9,
                 audienceEnjoyment: 10,
-                technicalDifficulty: 3,
+                technicalDifficuty: 3,
                 playingFunLevel: 10
             },
             {
                 name: 'Lemon tree',
                 durationInMinutes: 3,
                 audienceEnjoyment: 8,
-                technicalDifficulty: 4,
+                technicalDifficuty: 4,
                 playingFunLevel: 3
             },
             {
                 name: 'Wonderwall',
                 durationInMinutes: 5,
                 audienceEnjoyment: 4,
-                technicalDifficulty: 4,
+                technicalDifficuty: 4,
                 playingFunLevel: 3
             },
             {
                 name: 'Pretty woman',
                 durationInMinutes: 3,
                 audienceEnjoyment: 6,
-                technicalDifficulty: 3,
+                technicalDifficuty: 3,
                 playingFunLevel: 1
             },
             {
                 name: 'Creep',
                 durationInMinutes: 4,
                 audienceEnjoyment: 4,
-                technicalDifficulty: 1,
+                technicalDifficuty: 1,
                 playingFunLevel: 1
             },
         ];
@@ -91,7 +91,7 @@
                 name: '',
                 durationInMinutes: 5,
                 audienceEnjoyment: 0,
-                technicalDifficulty: 0,
+                technicalDifficuty: 0,
                 playingFunLevel: 0
             });
         }
@@ -106,6 +106,7 @@
                     $scope.job.id = data.jobId;
                     $scope.job.running = true;
                     $scope.job.submitted = true;
+                    $scope.job.songs = [];
 
                     $timeout(checkJob, 5000);
                 })
