@@ -13,6 +13,9 @@ customize your list of songs.
 
 Once you are done, use the ``Submit`` link to request for an optimized set list.
 
+A ``Job information`` section will appear on the bottom of the page, it will display the status of the server side work, and
+the current best set list.
+
 ## Usage instructions
 
 In order to use it:
