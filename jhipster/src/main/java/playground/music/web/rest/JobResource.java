@@ -19,9 +19,8 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class JobResource {
+    private static String KIE_SERVER_ENDPOINT = "http://localhost:9090/kie-server-6.5.0.Final-webc/";
     private final Logger log = LoggerFactory.getLogger(JobResource.class);
-
-    private static long JOB_TIME = 30000;
 
     @PostMapping("/jobs")
     public ResponseEntity<JobDTO> createJob(@RequestBody JobRequestDTO jobRequest) {
@@ -34,11 +33,36 @@ public class JobResource {
         RestTemplate restTemplate = new RestTemplate();
         PlannerRequestDTO request = getPlannerRequestDTO(jobRequest);
         HttpEntity<PlannerRequestDTO> entity = new HttpEntity<>(request, headers);
-        restTemplate.postForLocation("http://localhost:9090/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist", entity);
+
+        // TODO handle server side errors when create the container
+        // TODO maybe separate the KIE server from this one by a microservice
+        //      to loadbalance requests to different containers/solvers
+        restTemplate.postForLocation(KIE_SERVER_ENDPOINT
+            + "services/rest/server/containers/music/solvers/setlist", entity);
 
         JobDTO job = new JobDTO();
+
+        // For now we only support one user at a time
         job.setJobId("1234");
         return ResponseEntity.ok(job);
+    }
+
+    @GetMapping("/jobs/{jobId}")
+    public ResponseEntity<JobResultDTO> getJob(@PathVariable String jobId) {
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("authorization", "Basic a2llc2VydmVyOmtpZXNlcnZlcg==");
+        headers.add("x-kie-contenttype", "application/json");
+
+        HttpEntity entity = new HttpEntity(headers);
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<PlannerResponseDTO> response = restTemplate.exchange(KIE_SERVER_ENDPOINT
+            + "services/rest/server/containers/music/solvers/setlist/bestsolution",
+            HttpMethod.GET,
+            entity,
+            PlannerResponseDTO.class);
+
+        // TODO handle errors from solver side
+        return ResponseEntity.ok(getJobResultDTO(response.getBody()));
     }
 
     private PlannerRequestDTO getPlannerRequestDTO(JobRequestDTO jobRequest) {
@@ -51,26 +75,11 @@ public class JobResource {
         planningProblem.setSolution(solution);
 
         PlayingSlotDTO playingSlot = new PlayingSlotDTO();
-
         playingSlot.setTotalAllocatedSlot(jobRequest.getTotalAllocatedSlot());
         solution.setPlayingSlot(playingSlot);
         solution.setSongList(jobRequest.getSongs());
 
         return request;
-    }
-
-    @GetMapping("/jobs/{jobId}")
-    public ResponseEntity<JobResultDTO> getJob(@PathVariable String jobId) {
-        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
-        headers.add("authorization", "Basic a2llc2VydmVyOmtpZXNlcnZlcg==");
-        headers.add("x-kie-contenttype", "application/json");
-
-        HttpEntity entity = new HttpEntity(headers);
-        RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<PlannerResponseDTO> response = restTemplate.exchange("http://localhost:9090/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist/bestsolution", HttpMethod.GET, entity, PlannerResponseDTO.class);
-
-        System.out.println(response.getBody());
-        return ResponseEntity.ok(getJobResultDTO(response.getBody()));
     }
 
     private JobResultDTO getJobResultDTO(PlannerResponseDTO body) {
