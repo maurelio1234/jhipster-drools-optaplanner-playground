@@ -2,13 +2,19 @@ package playground.music.web.rest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import playground.music.service.dto.jobs.JobDTO;
 import playground.music.service.dto.jobs.JobRequestDTO;
 import playground.music.service.dto.jobs.JobResultDTO;
 import playground.music.service.dto.jobs.SongDTO;
+import playground.music.service.dto.optaplanner.*;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,45 +25,70 @@ public class JobResource {
     private final Logger log = LoggerFactory.getLogger(JobResource.class);
 
     private static long JOB_TIME = 30000;
-    private static Random random = new Random();
-
-    private HashMap<String, JobDTO> jobs = new HashMap<>();
-    private HashMap<String, Long> timeouts = new HashMap<>();
-    private HashMap<String, List<String>> songs = new HashMap<String, List<String>>();
 
     @PostMapping("/jobs")
     public ResponseEntity<JobDTO> createJob(@RequestBody JobRequestDTO jobRequest) {
         log.debug("REST request to create job : {}", jobRequest);
 
-        String jobId = UUID.randomUUID().toString();
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("authorization", "Basic a2llc2VydmVyOmtpZXNlcnZlcg==");
+        headers.add("x-kie-contenttype", "application/json");
+
+        RestTemplate restTemplate = new RestTemplate();
+        PlannerRequestDTO request = getPlannerRequestDTO(jobRequest);
+        HttpEntity<PlannerRequestDTO> entity = new HttpEntity<>(request, headers);
+        restTemplate.postForLocation("http://localhost:9090/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist", entity);
 
         JobDTO job = new JobDTO();
-
-        job.setJobId(jobId);
-        job.setTimeout(JOB_TIME);
-
-        jobs.put(jobId, job);
-        timeouts.put(jobId, System.currentTimeMillis() + JOB_TIME);
-        songs.put(jobId, jobRequest.getSongs().stream().map(SongDTO::getName).collect(Collectors.toList()));
-
+        job.setJobId("1234");
         return ResponseEntity.ok(job);
+    }
+
+    private PlannerRequestDTO getPlannerRequestDTO(JobRequestDTO jobRequest) {
+        PlannerRequestDTO request = new PlannerRequestDTO();
+        request.setStatus("SOLVING");
+        PlanningProblem planningProblem = new PlanningProblem();
+        request.setPlanningProblem(planningProblem);
+
+        Solution solution = new Solution();
+        planningProblem.setSolution(solution);
+
+        PlayingSlot playingSlot = new PlayingSlot();
+
+        playingSlot.setTotalAllocatedSlot(jobRequest.getTotalAllocatedSlot());
+        solution.setPlayingSlot(playingSlot);
+        solution.setSongList(jobRequest.getSongs());
+
+        return request;
     }
 
     @GetMapping("/jobs/{jobId}")
     public ResponseEntity<JobResultDTO> getJob(@PathVariable String jobId) {
-        if (jobs.containsKey(jobId)) {
-            JobResultDTO jobResult = new JobResultDTO();
-            jobResult.setSongNames(new ArrayList<>());
-            jobResult.setFinished(System.currentTimeMillis() > timeouts.get(jobId));
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        headers.add("authorization", "Basic a2llc2VydmVyOmtpZXNlcnZlcg==");
+        headers.add("x-kie-contenttype", "application/json");
 
-            for (String songName : songs.get(jobId)) {
-                if (random.nextBoolean()) {
-                    jobResult.getSongNames().add(songName);
-                }
-            }
-            return ResponseEntity.ok(jobResult);
-        } else {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
+        HttpEntity entity = new HttpEntity(headers);
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<PlannerResponseDTO> response = restTemplate.exchange("http://localhost:9090/kie-server-6.5.0.Final-webc/services/rest/server/containers/music/solvers/setlist/bestsolution", HttpMethod.GET, entity, PlannerResponseDTO.class);
+
+        System.out.println(response.getBody());
+        return ResponseEntity.ok(getJobResultDTO(response.getBody()));
+    }
+
+    private JobResultDTO getJobResultDTO(PlannerResponseDTO body) {
+        JobResultDTO result = new JobResultDTO();
+        result.setFinished(!"SOLVING".equals(body.getType()));
+        result.setSongNames(body
+            .getResult()
+            .getSolverInstance()
+            .getBestSolution()
+            .getSetListSolution()
+            .getSongList()
+            .stream()
+            .filter(song -> song.getInSetList().booleanValue())
+            .map(song -> song.getName())
+            .collect(Collectors.toList()));
+        return result;
     }
 }
