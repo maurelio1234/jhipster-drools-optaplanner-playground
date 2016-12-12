@@ -28,13 +28,12 @@ Wait for the following message:
 
 Wait for this message:
 
-``
 ----------------------------------------------------------
         Application 'jhipster' is running! Access URLs:
         Local:          http://localhost:8080
         External:       http://172.31.25.131:8080
 ----------------------------------------------------------
-``
+
 
 * Terminal 4: On the jhipster folder
 
@@ -42,7 +41,6 @@ Wait for this message:
 
 Wait for this message:
 
-``
 [BS] Access URLs:
  --------------------------------------
        Local: http://localhost:9000
@@ -51,6 +49,5 @@ Wait for this message:
           UI: http://localhost:3001
  UI External: http://172.31.25.131:3001
  --------------------------------------
- ``
  
  The set list composer should be available under: http://localhost:9000/#/music
