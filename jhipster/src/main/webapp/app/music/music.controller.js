@@ -79,7 +79,7 @@
             },
         ];
 
-        $scope.playingSlot = { totalAllocatedSlot: 30 };
+        $scope.playingSlot = { totalAllocatedSlot: 15 };
 
         $scope.job = {
             running: false,
