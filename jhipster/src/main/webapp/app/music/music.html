@@ -8,7 +8,7 @@
         <hr>
         <p>#{{ $index + 1 }}</p>
 
-        Name: <input ng-model="song.name">
+        Name: <input ng-model="song.name" required>
         Duration: <input ng-model="song.durationInMinutes"> minutes
         <br/>
 
@@ -18,7 +18,7 @@
 
         <a href="" ng-click="vm.remove($index)">Remove</a>
     </div>
-    <div>
+    <div style="text-align: right">
         <hr>
         <a href="" ng-click="vm.add()">Add</a>
         <a href="" ng-click="vm.submit()">Submit</a>
