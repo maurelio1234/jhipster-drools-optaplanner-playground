@@ -26,8 +26,6 @@ public class JobResource {
 
     @PostMapping("/jobs")
     public ResponseEntity<JobDTO> createJob(@RequestBody JobRequestDTO jobRequest) {
-        log.debug("REST request to create job : {}", jobRequest);
-
         MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
         headers.add("authorization", AUTHORIZATION_TOKEN);
         headers.add("x-kie-contenttype", "application/json");
